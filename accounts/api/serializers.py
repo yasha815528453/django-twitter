@@ -10,7 +10,7 @@ class UserSerializer(serializers.ModelSerializer):
 class LoginSerializer(serializers.Serializer):
     username = serializers.CharField()
     password = serializers.CharField()
-
+    
     def validate(self, data):
         if not User.objects.filter(username=data['username'].lower()).exists():
             raise exceptions.ValidationError({
@@ -37,6 +37,12 @@ class SignupSerializer(serializers.Serializer):
         if User.objects.filter(email=data['email'].lower()).exists():
             raise exceptions.ValidationError({
                 'email': 'This email address has been occupied.'
+                'message': 'This email address has been occupied.'
+            })
+        if User.objects.filter(email=data['email'].lower()).exists():
+            raise exceptions.ValidationError({
+                'message': 'This email address has been occupied.'
+
             })
         return data
 
