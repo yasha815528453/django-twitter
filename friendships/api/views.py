@@ -10,7 +10,7 @@ from friendships.api.serializers import (
 )
 from django.contrib.auth.models import User
 
-class FriendShipViewSet(viewsets.GenericViewSet):
+class FriendshipViewSet(viewsets.GenericViewSet):
     queryset = User.objects.all()
 
     @action(methods=['GET'], detail=True, permission_classes=[AllowAny])
